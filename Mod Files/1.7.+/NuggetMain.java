@@ -26,7 +26,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @Mod(modid = NuggetMain.modid)
 public class NuggetMain {
 	//Wasting Space..............................................................................................................................................................................................................................................................................................................................................................
-	public static final String version = "Beta v1.0";
+	public static final String version = "1.7.2 - 1.0.0.5A";
 	public static final String modid = "NuggetMain";
 	
 	//Materials
@@ -38,6 +38,7 @@ public class NuggetMain {
 	//Achievements
 	public static Achievement nuggetAchievement;
 	public static Achievement nuggetswordAchievement;
+	public static Achievement chickennuggetAchievement;
 	
 	//Blocks
 	public static Block nuggetblock; 
@@ -52,7 +53,7 @@ public class NuggetMain {
 	//Creative Tab
 	public static CreativeTabs tabNugget = new CreativeTabs("nuggettab"){
 		public Item getTabIconItem() {
-			return Items.cooked_chicken;
+			return itemnuggetbiscuit;
 		}
 	};
 	
@@ -129,7 +130,7 @@ public class NuggetMain {
 	//Name                                                    achname coords achievement picture    prerequisite 
 	nuggetAchievement = new Achievement("achievement.nugget", "nugget", 5, 0, itemnuggetbiscuit, (Achievement)AchievementList.buildWorkBench).initIndependentStat().registerStat().setSpecial();
 	nuggetswordAchievement = new Achievement("achievement.nuggetsword", "nuggetsword", 3, 0, swordnugget, (Achievement)AchievementList.buildWorkBench).initIndependentStat().registerStat().setSpecial();
-	
+	chickennuggetAchievement = new Achievement("achievement.chickennugget", "chickennugget", 5, 1, itemnugget, (Achievement)AchievementList.buildWorkBench).initIndependentStat().registerStat().setSpecial();
 	//AchievementPage.registerAchievementPage(new AchievementPage("Nugget Mod Achievements", new Achievement[]{nuggetAchievement, nuggetswordAchievement}));
 	
 	//Register World Generator
@@ -142,6 +143,9 @@ public class NuggetMain {
 	public void init(FMLInitializationEvent e){
 		FMLCommonHandler.instance().bus().register(new NuggetOnCraftEvent());
 		//MinecraftForge.EVENT_BUS.register(new NuggetOnCraftEvent());
+		
+		FMLCommonHandler.instance().bus().register(new ConnectionHandler());
+		
 	}
 }
 	/*
